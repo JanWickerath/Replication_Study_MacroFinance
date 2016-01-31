@@ -1,30 +1,17 @@
 \documentclass[a4paper,12pt,titlepage]{article}
 
-% Set borders with the geometry package. Syntax self explanatory
 \usepackage[a4paper, left=3cm, right=2cm, top=2.5cm, bottom=2.5cm]{geometry}
-
-% For better readability use 1 1/2 spacing
 \usepackage[onehalfspacing]{setspace}
-
-% In case you prefer a blank line before a new abstract begins, instead of indentation
-% \parskip 12pt
-% \parindent 0pt 
-
-% Fancyhdr to create a nice page header (and footer).
 \usepackage{fancyhdr}
 \headheight 14.5pt
-
 \pagestyle{fancy}
 \fancyhead[C]{}
 \fancyhead[R]{Page \thepage}
 \fancyhead[L]{\leftmark}
 \fancyfoot[C]{}
-%\fancyfoot[R]{Page \thepage}
 
-% Some other packages you might find useful 
 \usepackage{graphicx}
 \usepackage{amsmath}
-%\usepackage{hyperref}
 
 % For bibliography use biblatex
 \usepackage[
@@ -32,24 +19,26 @@
             style=authoryear,
             citestyle=authoryear
 ]{biblatex}
-\addbibresource{sample.bib}
+% \addbibresource{sample.bib}
 
 \begin{document}
 
 \begin{titlepage}
 \begin{center}
 
-\textbf{\Huge Title of your paper}
+\textbf{\Huge Replication Study of Jermann and Quadrini (2006): Macroeconomic
+  Effects fo Financial Shocks}
 \\[5cm]
 \Large 
 Term paper for the course\\
-Course Name goes here\\
-your Institution goes here\\
+Projectmodule in Macroeconomics and Econometrics\\
+University of Bonn\\
 \vfill
-Supervisor: XXX\\[2cm]
+Supervisor: \\
+Benjamin Born and Thomas Hintermaier\\[2cm]
 
 by:\\
-your name\\
+Jan Wickerath\\
 
 
 \end{center}
