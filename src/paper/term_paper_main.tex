@@ -1,0 +1,95 @@
+\documentclass[a4paper,12pt,titlepage]{article}
+
+% Set borders with the geometry package. Syntax self explanatory
+\usepackage[a4paper, left=3cm, right=2cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+% For better readability use 1 1/2 spacing
+\usepackage[onehalfspacing]{setspace}
+
+% In case you prefer a blank line before a new abstract begins, instead of indentation
+% \parskip 12pt
+% \parindent 0pt 
+
+% Fancyhdr to create a nice page header (and footer).
+\usepackage{fancyhdr}
+\headheight 14.5pt
+
+\pagestyle{fancy}
+\fancyhead[C]{}
+\fancyhead[R]{Page \thepage}
+\fancyhead[L]{\leftmark}
+\fancyfoot[C]{}
+%\fancyfoot[R]{Page \thepage}
+
+% Some other packages you might find useful 
+\usepackage{graphicx}
+\usepackage{amsmath}
+%\usepackage{hyperref}
+
+% For bibliography use biblatex
+\usepackage[
+            backend=biber,
+            style=authoryear,
+            citestyle=authoryear
+]{biblatex}
+\addbibresource{sample.bib}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+
+\textbf{\Huge Title of your paper}
+\\[5cm]
+\Large 
+Term paper for the course\\
+Course Name goes here\\
+your Institution goes here\\
+\vfill
+Supervisor: XXX\\[2cm]
+
+by:\\
+your name\\
+
+
+\end{center}
+\end{titlepage}
+
+\thispagestyle{empty}
+\tableofcontents
+
+\newpage
+
+% Set page number to 1 and start numbering the pages
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% No layout on first page
+\thispagestyle{empty}
+
+\section{Introduction}
+\label{sec:intro}
+
+We need some citation in the introduction to check the bibliography therefore
+refer to \cite{Eggertsson_Krugman_QJE2012} or
+\textcite{Eggertsson_Krugman_QJE2012} or \parencite{Eggertsson_Krugman_QJE2012}
+% Main part goes here
+% \input{introduction.tex}
+% \input{related_literature.tex}
+% \input{contrib.tex}
+% \input{limitations.tex}
+% \input{conclusion.tex}
+\newpage
+
+\appendix
+
+% Include some nice figures and fancy tables in your appendix
+\section{Figures}
+
+\newpage
+\printbibliography
+% \bibliography{topics_bib}
+% \bibliographystyle{KKbib}
+
+\end{document}
+
