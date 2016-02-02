@@ -1,14 +1,51 @@
 % Read in the data from the original data files and prepare them for use
 % across differents modules of this project.
 
+%% Path settings
+
+% If you do not use waf you can comment out the project_paths line and use
+% the relative path instead.
+path_original_data = project_paths('IN_DATA');
+% path_original_data = '../original_data/';
+
+path_financial_accounts = strcat(path_original_data, ...
+                                 'Financial_accounts_original.csv');
+path_business_gdp = strcat(path_original_data, ...
+                           'business_value_added_nipa_original.xls');
+path_real_gdp = strcat(path_original_data, 'real_gdp_nipa_original.xls');
+path_working_hours = strcat(path_original_data, ...
+                            'index_hours_bea_original.xls');
+
+%% Read in data
+financial_accounts_original = csvread(path_financial_accounts, 6, 1);
+corporate_equities = financial_accounts_original(:, 1);
+corporate_dividends = financial_accounts_original(:, 2);
+farm_dividends = financial_accounts_original(:, 3);
+prop_invest = financial_accounts_original(:, 4);
+corporate_debt = financial_accounts_original(:, 5);
+corporate_capital_consumption = financial_accounts_original(:, 6);
+noncorporate_capital_consumption = financial_accounts_original(:, 7);
+capital_expenditures = financial_accounts_original(:, 8);
+
+business_gdp = (csvread(path_business_gdp, 7, 2, 'C8..IW8'))';
+
+timeline.full_sample = 1952:0.25:2015.5;
+timeline.estimation_sample = 1984:0.25:2015.5;
+
 %% Equity payout and debt repurchase
 
 % Equity Payout is calculated as net dividends farm and nonfarm sector minus
 % net increase in corporate equitiesminus proprietors’ net investment and
 % normalized by Business GDP times 10 (to meet scale in the paper).
+equity_payout.full_sample = equity_payout.full_sample = (corporate_dividends ...
+                                                  + farm_dividends - ...
+                                                  corporate_equities - ...
+                                                  prop_invest)./(business_gdp ...
+                                                  * 10);
 
 % Debt Repurchase is the negative of net increase in debt, normalized by
 % Business GDP times 10.
+debt_repurchase.full_sample = (- corporate_debt)./(business_gdp * 10);
 
 % Cyclical components for debt and equity for the subset from 1984 to 2015
 % received from band pass filtering the original data on that subperiod.
