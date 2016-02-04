@@ -30,7 +30,7 @@ noncorporate_capital_consumption = financial_accounts_original(:, 7);
 capital_expenditures = financial_accounts_original(:, 8);
 
 business_gdp = (csvread(path_business_gdp, 7, 2, 'C8..IW8'))';
-business_prices = (csvread(path_business_prices, 7, 2, 'C8..IW8'));
+business_prices = (csvread(path_business_prices, 7, 2, 'C8..IW8'))';
 
 timeline.full_sample = 1952:0.25:2015.5;
 timeline.estimation_sample = 1984:0.25:2015.5;
@@ -66,7 +66,7 @@ capital.full_sample = NaN(length(timeline.full_sample), 1);
 % capital to real business gdp over the entire sample.
 capital_init = 22.38;
 
-for idx = 2:length(capital.full_sample)
+for idx = 1:length(capital.full_sample)
     if idx == 1
         capital.full_sample(idx, 1) = capital_init + (capital_expenditures(idx) - ...
                                                       corporate_capital_consumption(idx) ...
@@ -88,7 +88,7 @@ end
 %% Debt
 
 % Debt construction for the whole sample
-
+debt.full_sample = NaN(length(
 % Calculate proportional deviations of debt by the same procedure described
 % for capital.
 
