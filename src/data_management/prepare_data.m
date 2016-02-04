@@ -88,7 +88,19 @@ end
 %% Debt
 
 % Debt construction for the whole sample
-debt.full_sample = NaN(length(
+nom_debt = NaN(length(timeline.full_sample), 1);
+debt_init = 94.12;
+
+for idx = 1:length(nom_debt)
+    if idx == 1
+        nom_debt(idx) = debt_init + corporate_debt(idx) * 0.00025;
+    else
+        nom_debt(idx) = nom_debt(idx - 1) + corporate_debt(idx) * 0.00025;
+    end
+end
+
+real_debt.full_sample = nom_debt./business_prices;
+
 % Calculate proportional deviations of debt by the same procedure described
 % for capital.
 
