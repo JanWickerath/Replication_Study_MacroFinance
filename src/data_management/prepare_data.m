@@ -12,6 +12,8 @@ path_financial_accounts = strcat(path_original_data, ...
                                  'Financial_accounts_original.csv');
 path_business_gdp = strcat(path_original_data, ...
                            'business_value_added_nipa_original.xls');
+path_business_prices = strcat(path_original_data, ...
+                              'business_prices_nipa_original.csv');
 path_real_gdp = strcat(path_original_data, 'real_gdp_nipa_original.xls');
 path_working_hours = strcat(path_original_data, ...
                             'index_hours_bea_original.xls');
@@ -28,6 +30,7 @@ noncorporate_capital_consumption = financial_accounts_original(:, 7);
 capital_expenditures = financial_accounts_original(:, 8);
 
 business_gdp = (csvread(path_business_gdp, 7, 2, 'C8..IW8'))';
+business_prices = (csvread(path_business_prices, 7, 2, 'C8..IW8'));
 
 timeline.full_sample = 1952:0.25:2015.5;
 timeline.estimation_sample = 1984:0.25:2015.5;
@@ -57,9 +60,25 @@ debt_repurchase.full_sample = (- corporate_debt)./(business_gdp * 10);
 %% Capital
 
 % Capital construction for the whole sample. 
+capital.full_sample = NaN(length(timeline.full_sample), 1);
 
 % Find initial value for capital such that there is no trend in the ratio of
 % capital to real business gdp over the entire sample.
+capital_init = 22.38;
+
+for idx = 2:length(capital.full_sample)
+    if idx == 1
+        capital.full_sample(idx, 1) = capital_init + (capital_expenditures(idx) - ...
+                                                      corporate_capital_consumption(idx) ...
+                                                      - noncorporate_capital_consumption(idx)) ...
+            * 0.00025/business_prices(idx);
+        
+    else
+        capital.full_sample(idx, 1) = capital.full_sample(idx - 1, 1) + ...
+            (capital_expenditures(idx) - corporate_capital_consumption(idx) ...
+             - noncorporate_capital_consumption(idx)) * 0.00025/business_prices(idx);
+    end
+end
 
 % Calculate proportional deviations of capital via log differencing and
 % demeaning for the 1984-2015 subsample. Note that here the trend is not
