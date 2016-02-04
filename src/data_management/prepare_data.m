@@ -14,7 +14,7 @@ path_business_gdp = strcat(path_original_data, ...
                            'business_value_added_nipa_original.xls');
 path_business_prices = strcat(path_original_data, ...
                               'business_prices_nipa_original.csv');
-path_real_gdp = strcat(path_original_data, 'real_gdp_nipa_original.xls');
+path_real_gdp = strcat(path_original_data, 'real_gdp_nipa_original.csv');
 path_working_hours = strcat(path_original_data, ...
                             'index_hours_bea_original.xls');
 
@@ -31,6 +31,7 @@ capital_expenditures = financial_accounts_original(:, 8);
 
 business_gdp = (csvread(path_business_gdp, 7, 2, 'C8..IW8'))';
 business_prices = (csvread(path_business_prices, 7, 2, 'C8..IW8'))';
+real_gdp = (csvread(path_real_gdp, 6, 2, 'C7..IW7'))';
 
 timeline.full_sample = 1952:0.25:2015.5;
 timeline.estimation_sample = 1984:0.25:2015.5;
@@ -108,15 +109,18 @@ real_debt.full_sample = nom_debt./business_prices;
 
 % Real business value added calculated for whole sample by dividing the series
 % for business value added by the business price index.
+output.real_business_gdp.full_sample = business_gdp ./ business_prices;
 
 % Proportional deviations as described above
 
 % Real total gdp for the entire sample.
+output.real_total_gdp.full_sample = real_gdp;
 
 % Proportional deviations for subsample as above.
 
 %% Working hours
 
-% Import working hours for whole sample
+% Import working hours for estimation sample only
+working_hours = csvread(path_working_hours, 1, 1);
 
 % Proportional deviations for subsample as above
