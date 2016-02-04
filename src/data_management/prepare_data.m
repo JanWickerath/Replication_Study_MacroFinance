@@ -5,18 +5,20 @@
 
 % If you do not use waf you can comment out the project_paths line and use
 % the relative path instead.
-path_original_data = project_paths('IN_DATA');
-% path_original_data = '../original_data/';
+% output_path = project_paths('OUT_DATA');
+output_path = '../../bld/out/data/';
+% path_original_data = project_paths('IN_DATA');
+path_original_data = '../original_data/';
 
 path_financial_accounts = strcat(path_original_data, ...
                                  'Financial_accounts_original.csv');
 path_business_gdp = strcat(path_original_data, ...
-                           'business_value_added_nipa_original.xls');
+                           'business_value_added_nipa_original.csv');
 path_business_prices = strcat(path_original_data, ...
                               'business_prices_nipa_original.csv');
 path_real_gdp = strcat(path_original_data, 'real_gdp_nipa_original.csv');
 path_working_hours = strcat(path_original_data, ...
-                            'index_hours_bea_original.xls');
+                            'index_hours_bea_original.csv');
 
 %% Read in data
 financial_accounts_original = csvread(path_financial_accounts, 6, 1);
@@ -34,18 +36,22 @@ business_prices = (csvread(path_business_prices, 7, 2, 'C8..IW8'))';
 real_gdp = (csvread(path_real_gdp, 6, 2, 'C7..IW7'))';
 
 timeline.full_sample = 1952:0.25:2015.5;
-timeline.estimation_sample = 1984:0.25:2015.5;
+start_date = 1984.0;
+start_index = find(timeline.full_sample == start_date);
+end_date = 2015.5;
+end_index = find(timeline.full_sample == end_date);
+timeline.estimation_sample = timeline.full_sample(start_index:end_index);
 
 %% Equity payout and debt repurchase
 
 % Equity Payout is calculated as net dividends farm and nonfarm sector minus
 % net increase in corporate equitiesminus proprietors’ net investment and
 % normalized by Business GDP times 10 (to meet scale in the paper).
-equity_payout.full_sample = equity_payout.full_sample = (corporate_dividends ...
-                                                  + farm_dividends - ...
-                                                  corporate_equities - ...
-                                                  prop_invest)./(business_gdp ...
-                                                  * 10);
+equity_payout.full_sample = (corporate_dividends ...
+                             + farm_dividends - ...
+                             corporate_equities - ...
+                             prop_invest)./(business_gdp ...
+                                            * 10);
 
 % Debt Repurchase is the negative of net increase in debt, normalized by
 % Business GDP times 10.
@@ -57,6 +63,12 @@ debt_repurchase.full_sample = (- corporate_debt)./(business_gdp * 10);
 % Calculate linearly detrended series for equity payout and debt repurchase
 % from 1984 onwards as they are used for comparing both model simulations to
 % the data.
+equity_payout.detrended = ...
+    detrend(equity_payout.full_sample(start_index:end_index));
+
+debt_repurchase.detrended = ...
+    detrend(debt_repurchase.full_sample(start_index:end_index));
+
 
 %% Capital
 
@@ -85,6 +97,7 @@ end
 % demeaning for the 1984-2015 subsample. Note that here the trend is not
 % necessarily zero, so a difference between linearly detrending and
 % demeaning might exist.
+capital.log_diff = detrend(log(capital.full_sample(start_index:end_index)));
 
 %% Debt
 
@@ -104,23 +117,35 @@ real_debt.full_sample = nom_debt./business_prices;
 
 % Calculate proportional deviations of debt by the same procedure described
 % for capital.
+real_debt.log_diff = detrend(log(real_debt.full_sample(start_index:end_index)));
 
 %% Output
 
 % Real business value added calculated for whole sample by dividing the series
 % for business value added by the business price index.
-output.real_business_gdp.full_sample = business_gdp ./ business_prices;
+business_output.full_sample = business_gdp ./ business_prices;
 
 % Proportional deviations as described above
+business_output.log_diff = ...
+    detrend(log(business_output.full_sample(start_index:end_index)));
 
 % Real total gdp for the entire sample.
-output.real_total_gdp.full_sample = real_gdp;
+total_output.full_sample = real_gdp;
 
 % Proportional deviations for subsample as above.
+total_output.log_diff = ...
+    detrend(log(total_output.full_sample(start_index:end_index)));
 
 %% Working hours
 
 % Import working hours for estimation sample only
-working_hours = csvread(path_working_hours, 1, 1);
+working_hours.original = csvread(path_working_hours, 1, 1);
 
 % Proportional deviations for subsample as above
+working_hours.log_diff = detrend(log(working_hours.original));
+
+
+%% Save series to matlab dataset
+save(strcat(output_path, 'dataset.mat'), 'equity_payout', 'debt_repurchase', ...
+    'capital', 'real_debt', 'business_output', 'total_output', ...
+    'working_hours')
