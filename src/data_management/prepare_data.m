@@ -5,10 +5,10 @@
 
 % If you do not use waf you can comment out the project_paths line and use
 % the relative path instead.
-% output_path = project_paths('OUT_DATA');
-output_path = '../../bld/out/data/';
-% path_original_data = project_paths('IN_DATA');
-path_original_data = '../original_data/';
+output_path = project_paths('OUT_DATA');
+% output_path = '../../bld/out/data/';
+path_original_data = project_paths('IN_DATA');
+% path_original_data = '../original_data/';
 
 path_financial_accounts = strcat(path_original_data, ...
                                  'Financial_accounts_original.csv');
