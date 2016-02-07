@@ -17,7 +17,7 @@ load recessiondates;
 
 %% Plot figure
 figure
-% set(gcf, 'visible', 'off')
+set(gcf, 'visible', 'off')
 plot1 = plot(timeline.full_sample, equity_payout.full_sample,'--r', ...
              timeline.full_sample, debt_repurchase.full_sample, 'b');
 
