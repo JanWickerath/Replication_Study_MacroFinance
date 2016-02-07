@@ -2,16 +2,23 @@
 
 
 def build(ctx):
-    for model in 'baseline', 'max_moves_2':
-        source = 'plot_locations'
-        ctx(
-            features='run_m_script',
-            source='{}.m'.format(source),
-            target=ctx.path_to(ctx, 'OUT_FIGURES', 'schelling_{}.png'.format(model)),
-            deps=[
-                ctx.path_to(ctx, 'OUT_ANALYSIS', 'schelling_{}.mat'.format(model)),
-                ctx.path_to(ctx, 'IN_MODEL_SPECS', '{}.json'.format(model))
-            ],
-            append="('{}')".format(model),
-            name='{}_{}'.format(source, model)
-        )
+    ctx(
+        features='run_m_script',
+        source='debt_equity_figure.m',
+        target=ctx.path_to(ctx, 'OUT_FIGURES', 'figure1.pdf'),
+        deps=ctx.path_to(ctx, 'OUT_DATA', 'dataset.mat'),
+        name='debt_equity_figure'
+    )
+    # for model in 'baseline', 'max_moves_2':
+    #     source = 'plot_locations'
+    #     ctx(
+    #         features='run_m_script',
+    #         source='{}.m'.format(source),
+    #         target=ctx.path_to(ctx, 'OUT_FIGURES', 'schelling_{}.png'.format(model)),
+    #         deps=[
+    #             ctx.path_to(ctx, 'OUT_ANALYSIS', 'schelling_{}.mat'.format(model)),
+    #             ctx.path_to(ctx, 'IN_MODEL_SPECS', '{}.json'.format(model))
+    #         ],
+    #         append="('{}')".format(model),
+    #         name='{}_{}'.format(source, model)
+    #     )
