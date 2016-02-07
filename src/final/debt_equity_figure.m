@@ -4,12 +4,12 @@
 %% Path settings
 
 % Use this path when compiling the entire project with waf.
-% path_to_data = project_paths('OUT_DATA', 'dataset.mat');
-% path_out_figure = project_paths('OUT_FIGURES', 'figure1.pdf');
+path_to_data = project_paths('OUT_DATA', 'dataset.mat');
+path_out_figure = project_paths('OUT_FIGURES', 'figure1.pdf');
 % Alternatively us the relative path below to run the script from the Matlab
 % IDE.
-path_to_data = '../../bld/out/data/dataset.mat';
-path_out_figure = '../../out/figures/figure1.pdf';
+% path_to_data = '../../bld/out/data/dataset.mat';
+% path_out_figure = '../../out/figures/figure1.pdf';
 
 %% Load in data
 load(path_to_data);
@@ -23,7 +23,7 @@ plot1 = plot(timeline.full_sample, equity_payout.full_sample,'--r', ...
 
 % Set limits for x and y-axis as in the paper
 ylim([-16,16]);
-xlim([1952,2012]);
+xlim([1952,2016]);
 
 % Add legend to the graph
 legend('Equity Payout','Debt repurchase', 'Location', 'northwest');
@@ -44,4 +44,4 @@ set(gcf, 'PaperPosition', [0 0 10 6.25]);
 
 % Save figure as pdf
 % saveas(gcf, path_out_figure)
-saveas(gcf, 'figure1.pdf')
+saveas(gcf, path_out_figure)
