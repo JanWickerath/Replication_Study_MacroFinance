@@ -26,7 +26,8 @@ ylim([-16,16]);
 xlim([1952,2016]);
 
 % Add legend to the graph
-legend('Equity Payout','Debt repurchase', 'Location', 'northwest');
+leg = legend('Equity Payout','Debt repurchase', 'Location', 'northwest');
+set(leg, 'FontSize', 18)
 
 % Add recessiondates to the graph
 plot_NBER_recessions(plot1, recessiondates);
