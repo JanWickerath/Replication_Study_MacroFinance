@@ -18,24 +18,22 @@ load recessiondates;
 %% Plot figure
 figure
 % set(gcf, 'visible', 'off')
-plot(timeline.full_sample, equity_payout.full_sample,'--r');
-hold on
-plot(timeline.full_sample, debt_repurchase.full_sample, 'b');
+plot1 = plot(timeline.full_sample, equity_payout.full_sample,'--r', ...
+             timeline.full_sample, debt_repurchase.full_sample, 'b');
 
 % Set limits for x and y-axis as in the paper
 ylim([-16,16]);
 xlim([1952,2012]);
 
+% Add legend to the graph
+legend('Equity Payout','Debt repurchase', 'Location', 'northwest');
+
+% Add recessiondates to the graph
+plot_NBER_recessions(plot1, recessiondates);
+
 % Plot zero reference line in the graph
 hline = refline(0,0);
 hline.Color = 'black';
-
-% Add recessiondates to the graph
-plot_NBER_recessions(gcf, recessiondates);
-
-% Add legend to the graph
-leg = legend('Equity Payout','Debt repurchase');
-set(leg, 'Location', 'northwest')
 
 % % get rid of whitespace
 % Get rid of whitespace
