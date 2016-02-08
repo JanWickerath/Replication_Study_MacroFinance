@@ -48,4 +48,4 @@ ar_mat = NaN(2, 2);
                                             regression_data);
 
 
-save(path_analysis_output, 'prod_innovations', 'fin_innovations');
+save(path_analysis_output, 'prod_innovations', 'fin_innovations', 'ar_mat');
