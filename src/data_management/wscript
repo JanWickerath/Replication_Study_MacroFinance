@@ -10,3 +10,10 @@ def build(ctx):
         target=ctx.path_to(ctx, 'OUT_DATA', 'dataset.mat'),
         name='prepare_data'
     )
+
+    ctx(
+        features='run_m_script',
+        source='parameter.m',
+        target=ctx.path_to(ctx, 'OUT_DATA', 'parameters.mat'),
+        name='parameter'
+    )
