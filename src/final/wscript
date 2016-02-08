@@ -9,6 +9,15 @@ def build(ctx):
         deps=ctx.path_to(ctx, 'OUT_DATA', 'dataset.mat'),
         name='debt_equity_figure'
     )
+
+    ctx(
+        features='run_m_script',
+        source='create_ar_matrix.m',
+        target=ctx.path_to(ctx, 'OUT_TABLES', 'ar_matrix.tex'),
+        deps=ctx.path_to(ctx, 'OUT_ANALYSIS', 'shock_innovations.mat'),
+        name='create_ar_matrix'
+    )
+
     # for model in 'baseline', 'max_moves_2':
     #     source = 'plot_locations'
     #     ctx(

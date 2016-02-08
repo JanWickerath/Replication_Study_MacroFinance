@@ -3,11 +3,11 @@
 
 %% Path settings
 
-% path_out_analysis = project_paths('OUT_ANALYSIS', 'shock_innovations.mat');
-% path_out_table = project_paths('OUT_TABLES', 'ar_matrix.tex');
-path_out_analysis = '../../bld/out/analysis/shock_innovations.mat';
-% path_out_table = '../../bld/out/tables/shock_innovations.mat');
-path_out_table = 'ar_matrix.tex';
+path_out_analysis = project_paths('OUT_ANALYSIS', 'shock_innovations.mat');
+path_out_table = project_paths('OUT_TABLES', 'ar_matrix.tex');
+% path_out_analysis = '../../bld/out/analysis/shock_innovations.mat';
+% path_out_table = '../../bld/out/tables/shock_innovations.mat';
+
 %% Load variables from the shock creation script
 load(path_out_analysis);
 
