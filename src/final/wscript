@@ -12,6 +12,17 @@ def build(ctx):
 
     ctx(
         features='run_m_script',
+        source='plot_shocks.m',
+        target=ctx.path_to(ctx, 'OUT_FIGURES', 'figure2.pdf'),
+        deps=[
+            ctx.path_to(ctx, 'OUT_DATA', 'dataset.mat'),
+            ctx.path_to(ctx, 'OUT_ANALYSIS', 'shock_innovations.mat')
+        ],
+        name='plot_shocks'
+    )
+
+    ctx(
+        features='run_m_script',
         source='create_ar_matrix.m',
         target=ctx.path_to(ctx, 'OUT_TABLES', 'ar_matrix.tex'),
         deps=ctx.path_to(ctx, 'OUT_ANALYSIS', 'shock_innovations.mat'),
