@@ -17,6 +17,19 @@ def build(ctx):
         ],
         name='shock_construction.m'
     )
+
+    for model in 'baseline',:
+        ctx(
+            features='run_m_script',
+            source=ctx.path_to(
+                ctx, 'DYNARE_FILES', 'run_{}_model.m'.format(model)
+            ),
+            target=ctx.path_to(
+                ctx, 'OUT_ANALYSIS', '{}_model_results.mat'.format(model)
+            ),
+            name='run_{}_model'.format(model)
+        )
+
     # Illustrate use of run_m_script with automatic model specification.
     # for model in 'baseline', 'max_moves_2':
     #     source = 'schelling'
