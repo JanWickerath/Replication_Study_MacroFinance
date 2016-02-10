@@ -1,92 +1,46 @@
-%initialize IRF generation
+% Use the results from dynare to simulate the model with the shock vectors
+% estimated in the *shock_construction* script. Save them for later
+% comparison with the observed variables.
+
+%% Path settings
+
+% Use these paths for waf
+% path_dynare_output = project_paths('OUT_ANALYSIS', ...
+%                                   'baseline_model_results.mat');
+% path_to_shocks = project_paths('OUT_ANALYSIS', 'shock_innovations.mat');
+% path_out_analysis = project_paths('OUT_ANALYSIS', ...
+%                                  'baseline_simulation.mat');
+
+% And these for use in matlab IDE
+path_dynare_output = '../../bld/out/analysis/baseline_model_results.mat';
+path_to_shocks = '../../bld/out/analysis/shock_innovations.mat';
+path_out_analysis = '../../bld/out/analysis/baseline_simulation.mat';
+
+%% Load in data
+load(path_dynare_output)
+load(path_to_shocks)
+
+%% Simulation with dynare results
+
+% Set initial values for the simulation to be the steady state values saved
+% from dynare in oo_.dr.ys
 initial_condition_states = repmat(oo_.dr.ys,1,M_.maximum_lag);
 
-% figure('Name','Figure 6: Impulse Responses')
-%         plot(y_sim)
-shck = load('../../../../output/shocks_repl.mat');
-shock_matrix = horzcat(shck.tfp_resid, shck.fin_resid);
-
-% Import the updated shock series,
-shck_update = load('../../../../output/shocks_update.mat');
-shock_matrix_update = horzcat(shck_update.tfp_busgdp_resid, shck_update.fin_busgdp_resid);
+% Create a matrix where the first row corresponds to the innovations to
+% aggregate productivity and the second row to the innovations in financial
+% conditions.
+shock_matrix = horzcat(prod_innovations, fin_innovations);
 
 % Simulate with original innovation processes
-y2 = simult_(initial_condition_states,oo_.dr,shock_matrix,1);
-%y_IRF = y2(:,M_.maximum_lag+1:end)-repmat(oo_.dr.ys,1,options_.irf); %deviation from steady state
+model_simul = simult_(initial_condition_states,oo_.dr,shock_matrix,1);
 
-y3 = simult_(initial_condition_states,oo_.dr,horzcat(shck.tfp_resid, ...
-                                                  zeros(length(shck ...
-                                                  .fin_resid),1)),1);
+% Assign simulated series to variables
+baseline_simul.yhat = model_simul(strmatch('yhat',M_.endo_names, 'exact'),:);
+baseline_simul.nhat = model_simul(strmatch('nhat',M_.endo_names, 'exact'),:); 
+baseline_simul.byhat = model_simul(strmatch('byhat',M_.endo_names, 'exact'),:);
 
-y4 = simult_(initial_condition_states,oo_.dr, ...
-             horzcat(zeros(length(shck.tfp_resid),1), shck.fin_resid),1);
+baseline_simul.dyhat = model_simul(strmatch('dyhat',M_.endo_names, 'exact'),:) ...
+    - oo_.dr.ys(strmatch('dyhat',M_.endo_names, 'exact'));
 
-% Simulate with updated simulation processes
-y5 = simult_(initial_condition_states,oo_.dr,shock_matrix_update,1);
-y6 = simult_(initial_condition_states,oo_.dr, ... 
-             horzcat(shck_update.tfp_busgdp_resid, ... 
-                     zeros(length(shck_update.fin_busgdp_resid),1)),1);
-y7 = simult_(initial_condition_states,oo_.dr, ...
-             horzcat(zeros(length(shck_update.fin_busgdp_resid),1), ... 
-                     shck_update.fin_busgdp_resid),1);
-
-
-% c_sim = y2(strmatch('c',M_.endo_names, 'exact'),:);
-% n_sim = y2(strmatch('n',M_.endo_names, 'exact'),:);
-% w_sim = y2(strmatch('w',M_.endo_names, 'exact'),:);
-% k_sim = y2(strmatch('k',M_.endo_names, 'exact'),:);
-% R_sim = y2(strmatch('R',M_.endo_names, 'exact'),:);
-% r_sim = y2(strmatch('r',M_.endo_names, 'exact'),:);
-% d_sim = y2(strmatch('d',M_.endo_names, 'exact'),:);
-% b_sim = y2(strmatch('b',M_.endo_names, 'exact'),:);
-% mu_sim = y2(strmatch('mu',M_.endo_names, 'exact'),:);
-% v_sim = y2(strmatch('v',M_.endo_names, 'exact'),:);
-% z_sim = y2(strmatch('z',M_.endo_names, 'exact'),:);
-% xi_sim = y2(strmatch('xi',M_.endo_names, 'exact'),:);
-% y_sim = y2(strmatch('y',M_.endo_names, 'exact'),:);
-% inv_sim = y2(strmatch('inv',M_.endo_names, 'exact'),:);
-% yhat_sim = y2(strmatch('yhat',M_.endo_names, 'exact'), :);
-% chat_sim = y2(strmatch('chat',M_.endo_names, 'exact'),:); 
-% ihat_sim = y2(strmatch('ihat',M_.endo_names, 'exact'),:); 
-% nhat_sim = y2(strmatch('nhat',M_.endo_names, 'exact'),:); 
-% byhat_sim = y2(strmatch('byhat',M_.endo_names, 'exact'),:); 
-% dyhat_sim = y2(strmatch('dyhat',M_.endo_names, 'exact'),:) - ...
-%             oo_.dr.ys(strmatch('dyhat',M_.endo_names, 'exact'));
-% muhat_sim = y2(strmatch('muhat',M_.endo_names, 'exact'),:); 
-% vyhat_sim = y2(strmatch('vyhat',M_.endo_names, 'exact'),:); 
-
-% % csvwrite('../simulated.csv',yhat_sim');
-% save('../../../../output/simul_all', 'yhat_sim', 'nhat_sim', 'byhat_sim', 'dyhat_sim');
-% yhat_tfp_sim = y3(strmatch('yhat',M_.endo_names, 'exact'),:);
-% nhat_tfp_sim = y3(strmatch('nhat',M_.endo_names, 'exact'),:);
-% byhat_tfp_sim = y3(strmatch('byhat',M_.endo_names, 'exact'),:);
-% dyhat_tfp_sim = y3(strmatch('dyhat',M_.endo_names, 'exact'),:) - ...
-%                 oo_.dr.ys(strmatch('dyhat',M_.endo_names, 'exact'));
-% save('../../../../output/simul_tfp', 'yhat_tfp_sim', 'nhat_tfp_sim', 'byhat_tfp_sim', 'dyhat_tfp_sim');
-% yhat_fin_sim = y4(strmatch('yhat',M_.endo_names, 'exact'),:);
-% nhat_fin_sim = y4(strmatch('nhat',M_.endo_names, 'exact'),:);
-% byhat_fin_sim = y4(strmatch('byhat',M_.endo_names, 'exact'),:);
-% dyhat_fin_sim = y4(strmatch('dyhat',M_.endo_names, 'exact'),:) - ... 
-%                 oo_.dr.ys(strmatch('dyhat',M_.endo_names, 'exact'));
-% save('../../../../output/simul_fin', 'yhat_fin_sim', 'nhat_fin_sim', 'byhat_fin_sim', 'dyhat_fin_sim');
-% yhat_sim_update = y5(strmatch('yhat',M_.endo_names, 'exact'),:);
-% nhat_sim_update = y5(strmatch('nhat',M_.endo_names, 'exact'),:);
-% byhat_sim_update = y5(strmatch('byhat',M_.endo_names, 'exact'),:);
-% dyhat_sim_update = y5(strmatch('dyhat',M_.endo_names, 'exact'),:) - ... 
-%                    oo_.dr.ys(strmatch('dyhat',M_.endo_names, 'exact'));
-% save('../../../../output/simul_all_update', 'yhat_sim_update', 'nhat_sim_update', 'byhat_sim_update', 'dyhat_sim_update');
-% yhat_tfp_sim_update = y6(strmatch('yhat',M_.endo_names, 'exact'),:);
-% nhat_tfp_sim_update = y6(strmatch('nhat',M_.endo_names, 'exact'),:);
-% byhat_tfp_sim_update = y6(strmatch('byhat',M_.endo_names, 'exact'),:);
-% dyhat_tfp_sim_update = y6(strmatch('dyhat',M_.endo_names, 'exact'),:) - ...
-%                        oo_.dr.ys(strmatch('dyhat',M_.endo_names, 'exact'));
-% save('../../../../output/simul_tfp_update', 'yhat_tfp_sim_update', 'nhat_tfp_sim_update', 'byhat_tfp_sim_update', 'dyhat_tfp_sim_update');
-% yhat_fin_sim_update = y7(strmatch('yhat',M_.endo_names, 'exact'),:);
-% nhat_fin_sim_update = y7(strmatch('nhat',M_.endo_names, 'exact'),:);
-% byhat_fin_sim_update = y7(strmatch('byhat',M_.endo_names, 'exact'),:);
-% dyhat_fin_sim_update = y7(strmatch('dyhat',M_.endo_names, 'exact'),:) - ...
-%                        oo_.dr.ys(strmatch('dyhat',M_.endo_names, 'exact'));
-% save('../../../../output/simul_fin_update', 'yhat_fin_sim_update', 'nhat_fin_sim_update', 'byhat_fin_sim_update', 'dyhat_fin_sim_update');
-% % figure('Name','Figure 6: Impulse Responses')
-% %         plot(y_sim);
-% % 	y_lim = ([-14 8]);
+%% Save simulated series
+save(path_out_analysis, 'baseline_simul')
