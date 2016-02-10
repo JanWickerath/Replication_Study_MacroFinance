@@ -5,16 +5,16 @@
 %% Path settings
 
 % Use these paths for waf
-% path_dynare_output = project_paths('OUT_ANALYSIS', ...
-%                                   'baseline_model_results.mat');
-% path_to_shocks = project_paths('OUT_ANALYSIS', 'shock_innovations.mat');
-% path_out_analysis = project_paths('OUT_ANALYSIS', ...
-%                                  'baseline_simulation.mat');
+path_dynare_output = project_paths('OUT_ANALYSIS', ...
+                                  'baseline_model_results.mat');
+path_to_shocks = project_paths('OUT_ANALYSIS', 'shock_innovations.mat');
+path_out_analysis = project_paths('OUT_ANALYSIS', ...
+                                 'baseline_simulation.mat');
 
 % And these for use in matlab IDE
-path_dynare_output = '../../bld/out/analysis/baseline_model_results.mat';
-path_to_shocks = '../../bld/out/analysis/shock_innovations.mat';
-path_out_analysis = '../../bld/out/analysis/baseline_simulation.mat';
+% path_dynare_output = '../../bld/out/analysis/baseline_model_results.mat';
+% path_to_shocks = '../../bld/out/analysis/shock_innovations.mat';
+% path_out_analysis = '../../bld/out/analysis/baseline_simulation.mat';
 
 %% Load in data
 load(path_dynare_output)
