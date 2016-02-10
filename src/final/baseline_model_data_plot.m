@@ -3,12 +3,16 @@
 % original paper.
 
 %% Path settings
-% path_out_simulation = project_paths('OUT_ANALYSIS', 'baseline_simulation.mat');
-% path_to_data = project_paths('OUT_DATA', 'dataset.mat');
 
-path_out_simulation = '../../bld/out/analysis/baseline_simulation.mat';
-path_to_data = '../../bld/out/data/dataset.mat';
+% Paths for waf
+path_out_simulation = project_paths('OUT_ANALYSIS', 'baseline_simulation.mat');
+path_to_data = project_paths('OUT_DATA', 'dataset.mat');
+path_out_figure = project_paths('OUT_FIGURES', 'figure5.pdf');
 
+% Path for matlab IDE
+% path_out_simulation = '../../bld/out/analysis/baseline_simulation.mat';
+% path_to_data = '../../bld/out/data/dataset.mat';
+% path_out_figure = '../../bld/out/figures/figure5.pdf';
 
 %% Load and define data
 
@@ -27,7 +31,7 @@ equity_data = equity_payout.detrended(2:end) ./ 100;
 %% Plot comparison graphs
 % Plot
 figure;
-% set(gcf, 'visible', 'off');
+set(gcf, 'visible', 'off');
     subplot(2, 2, 1)
     plot(timeline, gdp_data, 'color', [0 0.6 0])
     hold on
@@ -77,4 +81,4 @@ figure;
     
 
 %% Save graph
-% saveas(gcf, '../../../output/figures/all_shocks_sim_updateul.pdf');
+saveas(gcf, path_out_figure);

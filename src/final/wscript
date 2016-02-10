@@ -29,6 +29,17 @@ def build(ctx):
         name='create_ar_matrix'
     )
 
+    ctx(
+        features='run_m_script',
+        source='baseline_model_data_plot.m',
+        target=ctx.path_to(ctx, 'OUT_FIGURES', 'figure5.pdf'),
+        deps=[
+            ctx.path_to(ctx, 'OUT_ANALYSIS', 'baseline_simulation.mat'),
+            ctx.path_to(ctx, 'OUT_DATA', 'dataset.mat')
+        ],
+        name='baseline_model_data_plot'
+    )
+
     # for model in 'baseline', 'max_moves_2':
     #     source = 'plot_locations'
     #     ctx(
