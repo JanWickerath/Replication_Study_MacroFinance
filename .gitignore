@@ -45,6 +45,7 @@ bld
 build
 debug
 Debug
+dynare_files
 final_out
 formatted_data
 project_documentation
@@ -59,3 +60,4 @@ Thumbs.db
 ___*
 !.gitignore
 !.mywaflib
+!.mod
