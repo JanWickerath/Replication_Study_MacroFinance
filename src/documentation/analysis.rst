@@ -11,3 +11,9 @@ that is :file:`baseline_model_results.mat`, to the analysis output folder in
 `bld`. Note that these scripts have to live in the same directory as the dynare
 model files to work properly. Therefore I also added the `dynare_files` to the
 project paths in the project roots wscript.
+
+The file :file:`baseline_simulation.m` simulates the baseline model with the
+shock vectors obtained from :file:`shock_construction.m`. To do so it uses the
+results (policy functions, steady state) from dynare, which are saved in the
+:file:`baseline_model_results.mat` file. The simulated series for output, labor
+hours, equity payouts and debt repurchases are saved for later use.
