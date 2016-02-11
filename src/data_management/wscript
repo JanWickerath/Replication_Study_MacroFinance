@@ -17,3 +17,10 @@ def build(ctx):
         target=ctx.path_to(ctx, 'OUT_DATA', 'parameters.mat'),
         name='parameter'
     )
+
+    ctx(
+        features='run_m_script',
+        source='simulation_data_prep.m',
+        target=ctx.path_to(ctx, 'OUT_DATA', 'estimation_data.mat'),
+        name='estimation_data'
+    )
