@@ -22,6 +22,8 @@
 ]{biblatex}
 % \addbibresource{sample.bib}
 
+\usepackage{blindtext}
+
 \begin{document}
 
 \begin{titlepage}
@@ -59,7 +61,7 @@ Jan Wickerath\\
 
 \section{Introduction}
 \label{sec:intro}
-
+\blindtext
 % We need some citation in the introduction to check the bibliography therefore
 % refer to \cite{Eggertsson_Krugman_QJE2012} or
 % \textcite{Eggertsson_Krugman_QJE2012} or \parencite{Eggertsson_Krugman_QJE2012}
@@ -67,11 +69,7 @@ Jan Wickerath\\
 \input{data}
 \input{baseline_model}
 \input{extended_model}
-% \input{introduction.tex}
-% \input{related_literature.tex}
-% \input{contrib.tex}
-% \input{limitations.tex}
-% \input{conclusion.tex}
+\input{conclusion.tex}
 \newpage
 
 \appendix
