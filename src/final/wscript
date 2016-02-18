@@ -40,6 +40,17 @@ def build(ctx):
         name='baseline_model_data_plot'
     )
 
+    ctx(
+        features='run_m_script',
+        source='table_3.m',
+        target=[
+            ctx.path_to(ctx, 'OUT_TABLES', 'cal_params.tex'),
+            ctx.path_to(ctx, 'OUT_TABLES', 'est_params.tex')
+        ],
+        deps=ctx.path_to(ctx, 'OUT_ANALYSIS', 'extended_model_results.mat'),
+        name='table_3'
+    )
+
     # for model in 'baseline', 'max_moves_2':
     #     source = 'plot_locations'
     #     ctx(
