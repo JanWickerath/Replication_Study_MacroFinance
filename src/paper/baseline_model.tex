@@ -35,14 +35,85 @@ shock that originates in the financial sector.
 \subsection{Shock construction}
 \label{sec:shock_construction}
 
-\input{figures/shock_figure}
-\blindtext
+Capital is calculated as described in the online appendix:
+  \begin{equation}
+  \label{eq:capital_original}
+  k_{t+1} = k_t - \text{Depreciation} + \text{Investment},
+  \end{equation}
+where Depreciation is calculated as capital consumption of corporate and
+noncorporate business, and investment is calculated as total capital
+expenditure of nonfinancial business, both divided by the business price
+index.
+
+For Depreciation and Investment I use observations from first quarter of 1952
+to the third quarter of 2015. As is done in the original calculation I chose an
+initial value for capital such that there is no trend in the ratio of capital
+to real business gdp over the period 1952Q1--2015Q3. With two digits precision
+this leads to a initial capital stock equal to 22.53. This initial value
+describes the capital stock at the beginning of the first period in the
+observation sample. With this procedure I get a vector of capital stocks that
+starts at the \textbf{beginning of 1952Q1} and ends at the \textbf{end of
+  2015Q3}. I remove the initial capital stock from this vector so that the
+vector of capital stocks has the same length as my other observed variables and
+contains the end-of-period capital stocks from the first quarter of 1952 to the
+third quarter of 1952.
+
+Proportional deviations of capital are then obtained by taking the logarithm of
+the capital series and linearly detrending it over the subperiod
+1984Q1--2015Q2.
+
+Debt levels are also calculated as described in the online appendix:
 \begin{equation}
-    A =
-    \begin{pmatrix}
-        \input{../../../bld/out/tables/ar_matrix.tex}
-    \end{pmatrix}
+    b_{t+1}^e = b_t^e + \text{Net New Borrowing},
 \end{equation}
+where Net New Borrowing is taken from the debt securities and loans series for
+nonfinancial business as described above. Note that \( b_{t+1} \) denotes the
+debt level at the end of period \(t\).
+
+The initial value for debt, i.e.\ the debt level that is around at the
+\textbf{beginning of 1952Q1}, is chosen as in the original program
+(94.12). Real debt levels are then computed by dividing debt levels from the
+end of 1952Q1 to the end of 2015Q2 by the business price level of the same
+period. Proportional deviations are again computed by linearly detrending the
+logarithmic series for the period 1984Q1--2015Q2.
+
+Real business gdp is calculated by dividing the series for business value added
+by the business price index. Real gdp and the index for working hours are
+already normalized. Proportional deviations for all these variables are
+calculated as described above.
+
+The index of aggregate working hours data that I use here are slightly
+different then the ones used in the original paper. This might be due to a
+different normalization of the index, or to data revisions. However, since the
+description of how the data series for labor is constructed is not very precise
+it is difficult to confirm where this differences come from.
+
+The financial shocks \( \xi \) are constructed by linearizing the enforcement constraint:
+\begin{equation}
+\label{eq:fin_shock_correct_timing}
+    \hat{\xi}_t = \phi_k \hat{k}_{t+1} + \phi_b \hat{b^e}_{t+1} + \hat{y}_t.
+\end{equation}
+This is equivalent to equation (1) in the online appendix. Here real business
+gdp (defined above) is used for the variable \(\hat{y}_t\).
+
+The productivity shocks are computed from the linearized production function:
+\begin{equation}
+    \hat{z}_t = \hat{y}_t - \theta \hat{k}_t - (1 - \theta) \hat{n}_t.
+\end{equation}
+Here, in contrast to the construction of financial shocks, real total gdp is
+used for \(\hat{y}_t\). Note that I only have proportional deviations of
+capital stocks for the end of period 1984Q1 onwards. Hence the vector of
+productivity values ranges from the \textbf{second quarter of 1984 to the
+  second quarter of 2015}. Since both shock vectors have to be of the same
+length, I also only calculate the financial shocks for this time span.
+\input{figures/shock_figure}
+
+% \begin{equation}
+%     A =
+%     \begin{pmatrix}
+%         \input{../../../bld/out/tables/ar_matrix.tex}
+%     \end{pmatrix}
+% \end{equation}
 
 \subsection{Findings}
 \label{sec:findings}
