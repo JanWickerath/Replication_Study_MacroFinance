@@ -10,6 +10,9 @@
 \fancyhead[L]{\leftmark}
 \fancyfoot[C]{}
 
+\parindent 0pt
+\parskip 12pt
+
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{booktabs}
@@ -20,7 +23,7 @@
             style=authoryear,
             citestyle=authoryear
 ]{biblatex}
-% \addbibresource{sample.bib}
+\addbibresource{term_paper.bib}
 
 \usepackage{blindtext}
 
@@ -59,17 +62,15 @@ Jan Wickerath\\
 % No layout on first page
 \thispagestyle{empty}
 
-\section{Introduction}
-\label{sec:intro}
-\blindtext
-% We need some citation in the introduction to check the bibliography therefore
-% refer to \cite{Eggertsson_Krugman_QJE2012} or
-% \textcite{Eggertsson_Krugman_QJE2012} or \parencite{Eggertsson_Krugman_QJE2012}
-% Main part goes here
+\input{introduction}
 \input{data}
 \input{baseline_model}
 \input{extended_model}
 \input{conclusion.tex}
+\newpage
+
+\printbibliography{}
+
 \newpage
 
 \appendix
