@@ -85,27 +85,44 @@ calculated as described above.
 The index of aggregate working hours data that I use here are slightly
 different then the ones used in the original paper. This might be due to a
 different normalization of the index, or to data revisions. However, since the
-description of how the data series for labor is constructed is not very precise
-it is difficult to confirm where this differences come from.
+description of how the data series for labor is constructed originally is not
+very precise it is difficult to confirm where the differences come from.
 
-The financial shocks \( \xi \) are constructed by linearizing the enforcement constraint:
+The financial states \( \xi \) are calculated by linearizing the enforcement
+constraint:
 \begin{equation}
 \label{eq:fin_shock_correct_timing}
     \hat{\xi}_t = \phi_k \hat{k}_{t+1} + \phi_b \hat{b^e}_{t+1} + \hat{y}_t.
 \end{equation}
-This is equivalent to equation (1) in the online appendix. Here real business
-gdp (defined above) is used for the variable \(\hat{y}_t\).
+This is equivalent to equation (1) in the online appendix of
+\textcite{jerman_macroeconomic_2012}. Here real business gdp (defined above) is
+used for the variable \(\hat{y}_t\).
 
-The productivity shocks are computed from the linearized production function:
+The productivity states are computed from the linearized production function:
 \begin{equation}
+\label{eq:lin_production}
     \hat{z}_t = \hat{y}_t - \theta \hat{k}_t - (1 - \theta) \hat{n}_t.
 \end{equation}
-Here, in contrast to the construction of financial shocks, real total gdp is
-used for \(\hat{y}_t\). Note that I only have proportional deviations of
-capital stocks for the end of period 1984Q1 onwards. Hence the vector of
-productivity values ranges from the \textbf{second quarter of 1984 to the
-  second quarter of 2015}. Since both shock vectors have to be of the same
-length, I also only calculate the financial shocks for this time span.
+Here I deviate somewhat from the original procedure of
+\citeauthor{jerman_macroeconomic_2012}. First I use real business gdp instead
+of real total gdp for \(\hat{y}_t\). I decided to do so because in the online
+Appendix in the section ``Construction of Productivity Shocks'' they claim that
+they apply the same procedure for output as they did when calculating the
+financial states. However, in their calculations they acutally use real
+business gdp for calculating financial states and real total gdp for
+calculating productivity states. The second deviation from the original
+procedure is in the timing of equation \ref{eq:lin_production}. Following the
+notation from the original paper \(\hat{k}_t\) denotes the the proportional
+deviation of capital at the end of period \(t - 1\). However, in the original
+program \(\hat{z}_t\) is calculated as a function of \(\hat{k}_{t +
+  1}\). Obviously this does not make sense economically, so I stick to the
+timing convention from equation \ref{eq:lin_production}.
+
+Note that I only have proportional deviations of capital stocks for the end of
+period 1984Q1 onwards. Hence the vector of productivity values ranges from the
+\textbf{second quarter of 1984 to the third quarter of 2015}. Since both shock
+vectors have to be of the same length, I also only calculate the financial
+shocks for this time span.
 \input{figures/shock_figure}
 
 % \begin{equation}
