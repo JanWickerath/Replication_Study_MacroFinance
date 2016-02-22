@@ -47,6 +47,9 @@ ar_mat = NaN(2, 2);
 [ar_mat(2,:), ~, fin_innovations] = regress(financial_state(2:end), ...
                                             regression_data);
 
+% Calculate correlation of innovations.
+corr_inno = corr(prod_innovations, fin_innovations);
+
 
 save(path_analysis_output, 'prod_innovations', 'fin_innovations', 'ar_mat', ...
-     'financial_state', 'productivity_state');
+     'financial_state', 'productivity_state', 'corr_inno');
