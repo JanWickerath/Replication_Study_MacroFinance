@@ -77,7 +77,7 @@ capital.full_sample = NaN(length(timeline.full_sample), 1);
 
 % Find initial value for capital such that there is no trend in the ratio of
 % capital to real business gdp over the entire sample.
-capital_init = 22.38;
+capital_init = 22.53;
 
 for idx = 1:length(capital.full_sample)
     if idx == 1
