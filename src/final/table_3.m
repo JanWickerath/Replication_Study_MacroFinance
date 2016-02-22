@@ -4,15 +4,15 @@
 %% Path settings
 
 % Use these paths for waf...
-% path_out_analysis = project_paths('OUT_ANALYSIS', ...
-%                                   'extended_model_results.mat');
-% path_out_table_cal = project_paths('OUT_TABLES', 'cal_params.tex');
-% path_out_table_est = project_paths('OUT_TABLES', 'est_params.tex');
+path_out_analysis = project_paths('OUT_ANALYSIS', ...
+                                  'extended_model_results.mat');
+path_out_table_cal = project_paths('OUT_TABLES', 'cal_params.tex');
+path_out_table_est = project_paths('OUT_TABLES', 'est_params.tex');
 
 % ... and these for Matlab IDE.
-path_out_analysis = '../../bld/out/analysis/extended_model_results.mat';
-path_out_table_cal = '../../bld/out/tables/cal_params.tex';
-path_out_table_est = '../../bld/out/tables/est_params.tex';
+% path_out_analysis = '../../bld/out/analysis/extended_model_results.mat';
+% path_out_table_cal = '../../bld/out/tables/cal_params.tex';
+% path_out_table_est = '../../bld/out/tables/est_params.tex';
 
 %% Load results
 load(path_out_analysis);
@@ -91,14 +91,19 @@ fid = fopen(path_out_table_est, 'w');
 for idx = 1:length(est_par)
 
     param = est_par(idx,:);
+    param_string = char(param);
     % Note that information for the estimation of the shocks are stored
     % differently from the information of estimated parameters. Hence we
     % first check for the estimated shocks.
     if idx <= size(estim_params_.var_exo,1)
-        long_name = M_.exo_names_long(strmatch(param, M_.exo_names, ...
-                                               'exact'),:);
-        tex_name = M_.exo_names_tex(strmatch(param, M_.exo_names, 'exact'),: ...
-                                    );
+        long_name = strcat(M_.exo_names_long(strmatch(param, M_.exo_names, ...
+                                               'exact'),:), ' volatility');
+        if ismember(param_string, ['eps_z', 'eps_G'])
+            tex_name = strcat('\sigma', '_{', param_string(5:end), '}');
+        else
+            tex_name = strcat('\sigma', '_{\', param_string(5:end), '}');
+        end
+        
         par_dist = dist_dict(estim_params_.var_exo(idx, 5));
         par_mean = estim_params_.var_exo(idx, 6);
         par_std = estim_params_.var_exo(idx, 7);
