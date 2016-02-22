@@ -123,7 +123,19 @@ period 1984Q1 onwards. Hence the vector of productivity values ranges from the
 \textbf{second quarter of 1984 to the third quarter of 2015}. Since both shock
 vectors have to be of the same length, I also only calculate the financial
 shocks for this time span.
-\input{figures/shock_figure}
+
+% \input{figures/shock_figure}
+
+The innovations to the financial state \(\epsilon_{\xi}\) and the productivity
+state \(\epsilon_{z}\) are estimated as the residuals from the autoregressive
+system in equation (12) of the original paper. Figure \ref{fig:figure2_update}
+plots the levels and innovations of both shocks in the model. A problem in this
+procedure is that the resulting shock innovations are highly
+correlated. Calculating a correlation coefficient between \(\epsilon_{\xi}\)
+and \(\epsilon_z\) gives a result of $0.6947$. This result is
+quite problematic since it is at odds with the author's interpretation of the
+two innovation processes as independent shocks. Empirically the model is not
+able to clearly distinguish the shocks.
 
 % \begin{equation}
 %     A =
