@@ -46,7 +46,7 @@ expenditure of nonfinancial business, both divided by the business price
 index.
 
 For Depreciation and Investment I use observations from first quarter of 1952
-to the third quarter of 2015. As is done in the original calculation I chose an
+to the third quarter of 2015. As is done in the original calculation I choose an
 initial value for capital such that there is no trend in the ratio of capital
 to real business gdp over the period 1952Q1--2015Q3. With two digits precision
 this leads to a initial capital stock equal to 22.53. This initial value
@@ -59,23 +59,23 @@ contains the end-of-period capital stocks from the first quarter of 1952 to the
 third quarter of 1952.
 
 Proportional deviations of capital are then obtained by taking the logarithm of
-the capital series and linearly detrending it over the subperiod
-1984Q1--2015Q2.
+the end-of-period capital series and linearly detrending it over the subperiod
+1984Q1--2015Q3. 
 
 Debt levels are also calculated as described in the online appendix:
 \begin{equation}
     b_{t+1}^e = b_t^e + \text{Net New Borrowing},
 \end{equation}
 where Net New Borrowing is taken from the debt securities and loans series for
-nonfinancial business as described above. Note that \( b_{t+1} \) denotes the
+nonfinancial business as described above. Note that \( b^{e}_{t+1} \) denotes the
 debt level at the end of period \(t\).
 
 The initial value for debt, i.e.\ the debt level that is around at the
 \textbf{beginning of 1952Q1}, is chosen as in the original program
 (94.12). Real debt levels are then computed by dividing debt levels from the
-end of 1952Q1 to the end of 2015Q2 by the business price level of the same
+end of 1952Q1 to the end of 2015Q3 by the business price level of the same
 period. Proportional deviations are again computed by linearly detrending the
-logarithmic series for the period 1984Q1--2015Q2.
+logarithmic series for the period 1984Q1--2015Q3.
 
 Real business gdp is calculated by dividing the series for business value added
 by the business price index. Real gdp and the index for working hours are
