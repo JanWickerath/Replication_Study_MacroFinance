@@ -132,7 +132,7 @@ system in equation (12) of the original paper. Figure \ref{fig:figure2_update}
 plots the levels and innovations of both shocks in the model. A problem in this
 procedure is that the resulting shock innovations are highly
 correlated. Calculating a correlation coefficient between \(\epsilon_{\xi}\)
-and \(\epsilon_z\) gives a result of $0.6947$. This result is
+and \(\epsilon_z\) gives a result of $0.6895$. This result is
 quite problematic since it is at odds with the author's interpretation of the
 two innovation processes as independent shocks. Empirically the model is not
 able to clearly distinguish the shocks.
@@ -147,8 +147,22 @@ able to clearly distinguish the shocks.
 \subsection{Findings}
 \label{sec:findings}
 
-Figure \ref{fig:figure5_update} plots simulated series for output, working
-hours and financial flows in the baseline model, when both shock series
-estimated above are plugged in to the model. It compares these simulated data
-to its empirical counterparts.
+Figure \ref{fig:figure5_update} plots simulated series for proportional
+deviations of output, working hours and financial flows from their respective
+steady state values in the baseline model, when both shock series estimated
+above are plugged in to the model. It compares these simulated data to its
+empirical counterparts. 
+
 \input{figures/baseline_data_figure}
+
+To make the observed data comparable to proportional deviations from the steady
+state I need to make sure that they have no trend and are centred around
+zero. To achieve this I follow the procedure from
+\textcite{jerman_macroeconomic_2012}. For output I take the logarithm of real
+GDP (obtained from the national income and product accounts, see appendix for
+further details) and linearly detrend it over the period from first quarter
+1984 to the third quarter 2015. The same procedure I apply to the index of
+aggregate weekly hours from the current employment statistics (again, see
+appendix for details). For equity payouts and debt repurchases and equity
+payouts I use the data series constructed in Section \ref{sec:data} and
+linearly detrend them over the same period as above.
