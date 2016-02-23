@@ -1,6 +1,6 @@
 \documentclass[a4paper,12pt,titlepage]{article}
 
-\usepackage[a4paper, left=3cm, right=2cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage[a4paper, left=3cm, right=2cm, top=2.5cm, bottom=2cm]{geometry}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{fancyhdr}
 \headheight 14.5pt
@@ -10,8 +10,8 @@
 \fancyhead[L]{\leftmark}
 \fancyfoot[C]{}
 
-\parindent 0pt
-\parskip 12pt
+% \parindent 0pt
+% \parskip 12pt
 
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -21,7 +21,8 @@
 \usepackage[
             backend=biber,
             style=authoryear,
-            citestyle=authoryear
+            citestyle=authoryear,
+            url=false
 ]{biblatex}
 \addbibresource{term_paper.bib}
 
@@ -30,7 +31,8 @@
 \begin{document}
 
 \input{titlepage}
-% \tableofcontents
+
+\tableofcontents
 
 \newpage
 
