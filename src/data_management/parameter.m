@@ -16,8 +16,8 @@ param.xi_bar          = 0.1634;
 param.kappa           = 0.146;
 param.sigma_z         = 0.0045;
 param.sigma_xi        = 0.0098;
-param.phi_k           = -1.5489;
-param.phi_b           = 0.5489;
+param.phi_k           = -1.5492;
+param.phi_b           = 0.5588;
 
 %% Save parameters to model specs folder
 save(path_to_model_specs, 'param');
