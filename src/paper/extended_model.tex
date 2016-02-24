@@ -20,7 +20,21 @@ according to some taylor rule.
 \label{sec:estimation}
 
 For the estimation of the extended model I use the original data from
-\textcite{jerman_macroeconomic_2012}. 
+\textcite{jerman_macroeconomic_2012}. They estimate the model using eight
+empirical series for GDP growth, personal consumption growth rate, inflation,
+growth rate of working hours, growth rate of hourly wages, federal funds rate
+and debt repurchases of nonfinancial businesses. The data are provided in a
+form that is not directly comparable to the model equivalents. Hence as in the
+baseline model I need to transform them to match the definition of their
+respective model variable. For GDP, consumption, investment, price deflator,
+working hours and wages I do so by taking log-differences and demean the
+resulting series. Since the federal funds rate is already expressed in
+percentage terms I demean the series without taking log-differences. I linearly
+detrend debt repurchases as this is the same procedure that was taken in the
+baseline model for Figure \ref{fig:figure5_update}.\footnote{Note that we can
+  see in Figure \ref{fig:figure1_update} that debt repurchases hav no clear
+  trend. Hence demeaning the series instead of linearly detrending it does not
+  make a remarkable difference.}
 
 \begin{table}
   \centering
@@ -41,9 +55,14 @@ For the estimation of the extended model I use the original data from
   \label{tab:estimation}
 \end{table}
 
-\subsection{Convergence}
-\label{sec:convergence}
+Table \ref{tab:estimation} shows the parameter values for the calibrated
+parameters. For the estimated shocks it shows the prior distribution as well as
+the mode and 95\% HPD-interval of the posterior distribution. The posterior
+distribution is reached using the Metropolis-Hastings algorithm implemented in dynare.
 
+\subsection{Convergence of the posterior distribution}
+\label{sec:convergence}
+\blindtext
 \input{figures/traceplot}
 
 
