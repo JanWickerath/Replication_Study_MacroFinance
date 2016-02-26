@@ -67,14 +67,13 @@ distribution is reached using the Metropolis-Hastings algorithm implemented in d
 The following section is going to discuss some convergence diagnostics for the
 Markov-Chain Monte-Carlo sampler that was used to obtain the posterior
 estimates for table \ref{tab:estimation}. For visual inspection of the
-posterior draws, panel (a) of figure \ref{fig:convergence_eps_xi} and
-\ref{fig:convergence_eps_z} show trace plots for three million draws from the
-MCMC-sample algorithm for the estimated variances of the financial shocks
-\(\xi\) and the tfp shocks \(z\). For the productivity shock we can see no
-trend in the draws as indicated by the almost flat line that represents the
-moving average over three hundred thousand sampled values. This is a good sign
-that the Markov chain of sampled values has converged to its stationary
-distribution.
+posterior draws, figure \ref{fig:convergence_eps_xi} show trace plots for three
+million draws from the MCMC-sample algorithm for the estimated variances of the
+financial shocks \(\xi\) and the tfp shocks \(z\). For the productivity shock
+we can see no trend in the draws as indicated by the almost flat line that
+represents the moving average over three hundred thousand sampled values. This
+is a good sign that the Markov chain of sampled values has converged to its
+stationary distribution.
 
 A more interesting case is the trace plot for the estimated standard deviation
 of the financial shock. Here we can, just by visual inspection, find jumps in
