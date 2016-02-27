@@ -28,7 +28,7 @@ included at the beginning of each script.
 Code Structure
 --------------
 
-The main replication code lives in the `src` directory of the Project root
+The main replication code lives in the **src** directory of the Project root
 folder. It is structured in six parts:
 
 1. original_data
