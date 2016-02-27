@@ -146,6 +146,11 @@ working_hours.log_diff = detrend(log(working_hours.original));
 
 
 %% Save series to matlab dataset
+
+if ~exist(output_path, 'dir')
+    mkdir(output_path)
+end
+
 save(strcat(output_path, 'dataset.mat'), 'equity_payout', 'debt_repurchase', ...
     'capital', 'real_debt', 'business_output', 'total_output', ...
     'working_hours', 'timeline')
