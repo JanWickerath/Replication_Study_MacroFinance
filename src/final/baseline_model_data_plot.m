@@ -37,41 +37,38 @@ set(gcf, 'visible', 'off');
     hold on
     plot(timeline, baseline_simul.yhat, '--b');
     set(gca, 'XLimMode', 'manual', 'XLim', [1985 2015.25]);
-    set(gca, 'YLimMode', 'manual', 'YLim', [-0.14 0.08]);
     h1 = legend('Data', 'Model');
     % h1.Location = 'southwest';
-    set(h1, 'fontsize', 4, 'Location', 'southwest');
-    title('GDP');
+    set(h1, 'fontsize', 9, 'Location', 'northwest');
+    title('GDP', 'Interpreter', 'latex');
     
     subplot(2, 2, 2)
     plot(timeline, hours_data, 'color', [0 0.6 0])
     hold on
     plot(timeline, baseline_simul.nhat, '--b')
     set(gca, 'XLimMode', 'manual', 'XLim', [1985 2015.25]);
-    set(gca, 'YLimMode', 'manual', 'YLim', [-0.14 0.08]);
     h2 = legend('Data', 'Model');
-    set(h2, 'fontsize', 4, 'Location', 'southwest');
-    title('Hours worked');
+    set(h2, 'fontsize', 9, 'Location', 'northwest');
+    title('Hours worked', 'Interpreter', 'latex');
     
     subplot(2, 2, 3)
     plot(timeline, debt_data, 'color', [0 0.6 0])
     hold on
     plot(timeline, baseline_simul.byhat, '--b')
     set(gca, 'XlimMode', 'manual', 'XLim', [1985 2015.25]);
-    set(gca, 'YLimMode', 'manual', 'YLim', [-0.12 0.15]);
+    set(gca, 'YLimMode', 'manual', 'YLim', [-0.1 0.17]);
     h3 = legend('Data', 'Model');
-    set(h3, 'fontsize', 4, 'Location', 'southwest');
-    title('Debt repurchase');
+    set(h3, 'fontsize', 9, 'Location', 'northwest');
+    title('Debt repurchase', 'Interpreter', 'latex');
     
     subplot(2, 2, 4)
     plot(timeline, equity_data, 'color', [0 0.6 0])
     hold on
     plot(timeline, detrend(baseline_simul.dyhat), '--b')
     set(gca, 'XlimMode', 'manual', 'XLim', [1985 2015.25]);
-    set(gca, 'YLimMode', 'manual', 'YLim', [-0.12 0.15]);
     h4 = legend('Data', 'Model');
-    set(h4, 'fontsize', 4, 'Location', 'southwest');
-    title('Equity payout');
+    set(h4, 'fontsize', 9, 'Location', 'northwest');
+    title('Equity payout', 'Interpreter', 'latex');
   
     % Get rid of whitespace
     set(gcf, 'PaperSize', [10 6.25]);

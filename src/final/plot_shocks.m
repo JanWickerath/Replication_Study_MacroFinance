@@ -23,25 +23,26 @@ set(gcf, 'visible', 'off')
          100)
     ylim([-8 8]);
     xlim([1985 2015.5]);
-    title('Level of productivity, z')
+    title('Level of productivity, z', 'Interpreter', 'latex')
     
     subplot(2, 2, 2)
     plot(timeline.estimation_sample(2:end-1), financial_state(1:end-1)*100)
     ylim([-8 8]);
     xlim([1985 2015.5]);
-    title('Level of financial conditions, \xi')
+    title('Level of financial conditions, \(\xi\)', 'Interpreter', 'latex')
     
     subplot(2, 2, 3)
     plot(timeline.estimation_sample(2:end-1), prod_innovations*100)
     ylim([-3.5 3.5]);
     xlim([1985 2015.5]);
-    title('Innvoations to productivity, \epsilon_z')
+    title('Innvoations to productivity, \(\epsilon_z\)', 'Interpreter', 'latex')
     
     subplot(2, 2, 4)
     plot(timeline.estimation_sample(2:end-1), fin_innovations*100)
     ylim([-3.5 3.5]);
     xlim([1985 2015.5]);
-    title('Innovations to financial conditions, \epsilon_{\xi}')
+    title('Innovations to financial conditions, \(\epsilon_{\xi}\)', 'Interpreter', ...
+          'latex')
     
 % Get rid of whitespace
 set(gcf, 'PaperUnits', 'inches');
