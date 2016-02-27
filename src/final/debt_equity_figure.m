@@ -9,7 +9,7 @@ path_out_figure = project_paths('OUT_FIGURES', 'figure1.pdf');
 % Alternatively us the relative path below to run the script from the Matlab
 % IDE.
 % path_to_data = '../../bld/out/data/dataset.mat';
-% path_out_figure = '../../out/figures/figure1.pdf';
+% path_out_figure = '../../bld/out/figures/figure1.pdf';
 
 %% Load in data
 load(path_to_data);
