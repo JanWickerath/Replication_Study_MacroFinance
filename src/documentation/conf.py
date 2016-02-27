@@ -46,8 +46,8 @@ source_encoding = "utf-8"
 master_doc = "index"
 
 # General information about the project.
-project = u"TTT"
-copyright = u"2013-, NNN"
+project = u"Replication Study"
+copyright = u"2013-, Jan Wickerath"
 
 # The version info for the project you"re documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -195,8 +195,8 @@ latex_elements = {
 latex_documents = [(
     "index",
     "project_documentation.tex",
-    "Documentation of the TTT project",
-    "NNN",
+    "Documentation of the Replication Study project",
+    "Jan Wickerath",
     "manual"
 )]
 
