@@ -5,7 +5,7 @@
 
 
 Welcome to the Replication Study project's documentation!
-================================================
+=========================================================
 
 .. toctree::
     :maxdepth: 2
@@ -16,7 +16,4 @@ Welcome to the Replication Study project's documentation!
     analysis
     final
     paper
-    model_code
-    model_specs
-    library
-    references
+
