@@ -7,7 +7,7 @@ Documentation of the code in **final**.
 
 
 Financial flows plot
-====================
+--------------------
 
 :file:`debt_equity_figure.m` Replicate the figure of debt repurchases and
 equity payouts with the newest data available. To do so I need to helpfiles:
@@ -18,7 +18,7 @@ directory.
       
 
 Baseline model
-==============
+--------------
 
 :file:`create_ar_matrix.m`: Print the Autoregressive matrix in a tex file so
 that it can be easily synced with the paper.
@@ -32,7 +32,7 @@ to its observed couterparts as done in figure 5 in the original paper.
 
 
 Extended model
-==============
+--------------
 
 :file:`table_3.m` Uses output from the extended model estimation to create an
 update of table 3.
