@@ -39,6 +39,8 @@ baseline model for Figure \ref{fig:figure5_update}.\footnote{Note that we can
 
 \begin{table}
   \centering
+  \caption{Parameterization}
+  \label{tab:estimation}
   \resizebox{\textwidth}{!}{
     \begin{tabular}{llccc}
       \toprule
@@ -49,11 +51,15 @@ baseline model for Figure \ref{fig:figure5_update}.\footnote{Note that we can
       Estimated parameters & Prior [mean, std] & Mode & Below 5\% & Below 95 \% \\
       \midrule
       \input{../../../bld/out/tables/est_params.tex}
-      \bottomrule    
+      \bottomrule
     \end{tabular}
   }
-  \caption{Parameterization}
-  \label{tab:estimation}
+  \smallskip
+
+  \raggedright
+  {\footnotesize \textit{The prior distributions for the average price
+    markup $\bar{\eta}$ and the average wage markup $\bar{\nu}$ are generalized
+    beta distributions with support [1, 2] }}
 \end{table}
 
 Table \ref{tab:estimation} shows the parameter values for the calibrated
