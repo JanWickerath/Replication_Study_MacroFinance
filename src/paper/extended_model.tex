@@ -6,11 +6,11 @@ financial friction develeoped in the baseline model to the model from
 \textcite{smets_shocks_2007}. Compared to the baseline model the extended model
 adds nominal rigidities in wages and prices. To do so the model follows the new
 keynesian literature and incorporates an explicit wage and price setting
-mechanism of monopolistically competitive households and firms. The wage
+mechanisms of monopolistically competitive households and firms. The wage
 setting mechanism follows a setting with Calvo's price
-rigidity \parencite{calvo_staggered_1983} whereas the price setting mechanism
+rigidity \parencite{calvo_staggered_1983}, whereas the price setting mechanism
 is rigid due to convex price adjustment
-costs \parencite{rotemberg_sticky_1982}. Additionally the extended model
+costs \parencite{rotemberg_sticky_1982}. Additionally, the extended model
 includes a public sector. The public sector consists of a fiscal authority,
 that makes unproductive government purchases and grants interest deduction to
 debtholders and balances its budget by collecting lump-sum taxes from the
@@ -25,17 +25,18 @@ For the estimation of the extended model I use the original data from
 empirical series for GDP growth, personal consumption growth rate, inflation,
 growth rate of working hours, growth rate of hourly wages, federal funds rate
 and debt repurchases of nonfinancial businesses. The data are provided in a
-form that is not directly comparable to the model equivalents. Hence as in the
-baseline model I need to transform them to match the definition of their
-respective model variable. For GDP, consumption, investment, price deflator,
-working hours and wages I do so by taking log-differences and demean the
-resulting series. Since the federal funds rate is already expressed in
-percentage terms I demean the series without taking log-differences. I linearly
-detrend debt repurchases as this is the same procedure that was taken in the
-baseline model for Figure \ref{fig:figure5_update}.\footnote{Note that we can
-  see in Figure \ref{fig:figure1_update} that debt repurchases hav no clear
-  trend. Hence demeaning the series instead of linearly detrending it does not
-  make a remarkable difference.}
+form that is not directly comparable to the model equivalents, as the model is
+stated in log-deviations from the steady state. Hence, as in the baseline model
+I need to transform them to match the definition of their respective model
+variable. For GDP, consumption, investment, price deflator, working hours and
+wages I do so by taking log-differences and demean the resulting series. Since
+the federal funds rate is already expressed in percentage terms I demean the
+series without taking log-differences. I linearly detrend debt repurchases as
+this is the same procedure that was taken in the baseline model for Figure
+\ref{fig:figure5_update}.\footnote{Note that we can see in Figure
+  \ref{fig:figure1_update} that debt repurchases hav no clear trend. Hence,
+  demeaning the series instead of linearly detrending it does not make a
+  remarkable difference.}
 
 \begin{table}
   \centering
@@ -58,14 +59,15 @@ baseline model for Figure \ref{fig:figure5_update}.\footnote{Note that we can
 
   \raggedright
   {\footnotesize \textit{The prior distributions for the average price
-    markup $\bar{\eta}$ and the average wage markup $\bar{\nu}$ are generalized
+    markup $\bar{\eta}$ and the average wage markup $\bar{\upsilon}$ are generalized
     beta distributions with support [1, 2] }}
 \end{table}
 
 Table \ref{tab:estimation} shows the parameter values for the calibrated
 parameters. For the estimated shocks it shows the prior distribution as well as
 the mode and 95\% HPD-interval of the posterior distribution. The posterior
-distribution is reached using the Metropolis-Hastings algorithm implemented in dynare.
+distribution is reached using the random walk Metropolis-Hastings algorithm
+implemented in dynare.
 
 \subsection{Convergence of the posterior distribution}
 \label{sec:convergence}
@@ -73,8 +75,8 @@ distribution is reached using the Metropolis-Hastings algorithm implemented in d
 The following section is going to discuss some convergence diagnostics for the
 Markov-Chain Monte-Carlo sampler that was used to obtain the posterior
 estimates for table \ref{tab:estimation}. For visual inspection of the
-posterior draws, figure \ref{fig:convergence_eps_xi} show trace plots for three
-million draws from the MCMC-sample algorithm for the estimated variances of the
+posterior draws, figure \ref{fig:convergence_eps_xi} shows trace plots for three
+million iterations for the MCMC-sample algorithm for the estimated variances of the
 financial shocks \(\xi\) and the tfp shocks \(z\). For the productivity shock
 we can see no trend in the draws as indicated by the almost flat line that
 represents the moving average over three hundred thousand sampled values. This
@@ -88,7 +90,7 @@ MCMC-sampler. So even at such a large number of iterations it is not clear
 whether the chain of sampled values has actually converged to the true
 posterior distribution. 
 
-Given the observations above it is remarkable that the original paper from
+Given the observations above, it is remarkable that the original paper from
 \textcite{jerman_macroeconomic_2012} provides results based on only ten
 thousand draws from the posterior distribution. At this stage even the chain of
 draws for the estimated standard deviation of the tfp shocks has not converged.
